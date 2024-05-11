@@ -8,7 +8,7 @@ hayden tested working on pi 2b
 requires xpadneo installed with DKMS (go to xpadneo website)
 """
 import asyncio, time, sys
-from evdev import InputDevice, ff, ecodes, list_devices()
+from evdev import InputDevice, ff, ecodes, list_devices
 import gertbot as gb
 import test_drivers as td
 
