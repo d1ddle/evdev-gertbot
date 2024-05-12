@@ -10,16 +10,16 @@ requires xpadneo installed with DKMS (go to xpadneo website)
 import asyncio, time, sys
 from evdev import InputDevice, ff, ecodes, list_devices
 import gertbot as gb
-import test_drivers as td
 
 devices = [InputDevice(path) for path in list_devices()]
 for device in devices:
     print(device.path, device.name, device.phys)
 
 board = 0
-for channel in range(0,4):
+for channel in range(0,3): # 3 inclusive
     gb.set_mode(board,channel,gb.MODE_BRUSHED)
     gb.set_endstop(board,channel,gb.ENDSTOP_OFF,gb.ENDSTOP_OFF)
+    gb.set_brush_ramps(board,channel,gb.RAMP_100,gb.RAMP_100,gb.RAMP_OFF)
 
 class gamepad():
     def __init__(self, file = '/dev/input/event5'):
@@ -172,7 +172,8 @@ if __name__ == "__main__":
             print(" trigger_right = ", round(remote_control.trigger_right,2), "  joystick_right_x = ", round(remote_control.joystick_right_x,2),end="\r")
             if remote_control.button_a:
                 remote_control.button_a = False
-                td.test_pwm_brushed()
+                gb.move_brushed(board,channel,1)
+                gb.move_brushed(board,channel,1)
 ##            if remote_control.button_y: # turn on light rumble effect
 ##                remote_control.button_y = False
 ##                remote_control.rumble_effect = 1
