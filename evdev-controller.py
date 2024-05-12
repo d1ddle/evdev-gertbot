@@ -17,7 +17,7 @@ for device in devices:
 
 board = 0
 for channel in range(0,3): # 3 inclusive
-    gb.set_mode(board,channel,gb.MODE_BRUSHED)
+    gb.set_mode(board,channel,gb.MODE_BRUSH)
     gb.set_endstop(board,channel,gb.ENDSTOP_OFF,gb.ENDSTOP_OFF)
     gb.set_brush_ramps(board,channel,gb.RAMP_100,gb.RAMP_100,gb.RAMP_OFF)
 
