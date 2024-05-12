@@ -15,7 +15,6 @@ devices = [InputDevice(path) for path in list_devices()]
 for device in devices:
     print(device.path, device.name, device.phys)
 
-gb.open_uart(0)
 board = 0
 for channel in range(0,3): # 3 inclusive
     gb.set_mode(board,channel,gb.MODE_BRUSH)
@@ -173,6 +172,7 @@ if __name__ == "__main__":
             print(" trigger_right = ", round(remote_control.trigger_right,2), "  joystick_right_x = ", round(remote_control.joystick_right_x,2),end="\r")
             if remote_control.button_a:
                 remote_control.button_a = False
+                print("A BTN")
                 gb.move_brushed(board,channel,1)
                 gb.move_brushed(board,channel,1)
 ##            if remote_control.button_y: # turn on light rumble effect
@@ -182,6 +182,7 @@ if __name__ == "__main__":
                 remote_control.button_b = False
                 gb.stop_all()
             if remote_control.button_x: # stop the script
+                print("X BTN")
                 remote_control.button_x = False
                 remote_control.power_on = False
                 remote_control.erase_rumble()
