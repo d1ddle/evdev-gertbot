@@ -15,6 +15,7 @@ devices = [InputDevice(path) for path in list_devices()]
 for device in devices:
     print(device.path, device.name, device.phys)
 
+gb.open_uart(0)
 board = 0
 for channel in range(0,3): # 3 inclusive
     gb.set_mode(board,channel,gb.MODE_BRUSH)
